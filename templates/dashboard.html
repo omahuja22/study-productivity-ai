@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Productivity Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-slate-100 min-h-screen">
+
+<!-- Header -->
+<header class="bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-slate-800">📊 Productivity Dashboard</h1>
+    <a href="/" class="text-sm text-blue-600 hover:underline">New Entry</a>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="max-w-7xl mx-auto px-6 py-8 space-y-8">
+
+  <!-- KPI Cards -->
+  <section class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="bg-white rounded-xl shadow p-5">
+      <p class="text-sm text-slate-500">Total Sessions</p>
+      <p class="text-3xl font-bold mt-1">{{ total_sessions }}</p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-5">
+      <p class="text-sm text-slate-500">Average Score</p>
+      <p class="text-3xl font-bold text-blue-600 mt-1">{{ avg_score }}/100</p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-5">
+      <p class="text-sm text-slate-500">Latest Score</p>
+      <p class="text-3xl font-bold mt-1">{{ latest_score }}/100</p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-5">
+      <p class="text-sm text-slate-500">Weekly Avg</p>
+      <p class="text-3xl font-bold mt-1">{{ weekly_avg }}/100</p>
+    </div>
+  </section>
+
+  <!-- Insights -->
+  <section class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow p-6">
+    <h3 class="font-semibold text-lg mb-2">🧠 Smart Insights</h3>
+    <ul class="space-y-1 text-sm">
+      <li>• {{ best_time_insight }}</li>
+      <li>• Weekly Change: {{ weekly_change }} points</li>
+      <li>• {{ health_insight }}</li>
+    </ul>
+  </section>
+
+  <!-- Charts -->
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="bg-white rounded-xl shadow p-6">
+      <h3 class="font-semibold mb-3">📈 Productivity Trend</h3>
+      <canvas id="trendChart"></canvas>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-6">
+      <h3 class="font-semibold mb-3">🎯 Focus Distribution</h3>
+      <canvas id="focusChart"></canvas>
+    </div>
+  </section>
+
+</main>
+
+<!-- Charts -->
+<script>
+new Chart(document.getElementById("trendChart"), {
+  type: "line",
+  data: {
+    labels: {{ dates | safe }},
+    datasets: [{
+      label: "Productivity Score",
+      data: {{ scores | safe }},
+      borderColor: "#2563eb",
+      tension: 0.4,
+      fill: false
+    }]
+  },
+  options: { scales: { y: { min: 0, max: 100 } } }
+});
+
+new Chart(document.getElementById("focusChart"), {
+  type: "doughnut",
+  data: {
+    labels: ["High", "Medium", "Low"],
+    datasets: [{
+      data: {{ focus_distribution | safe }},
+      backgroundColor: ["#22c55e", "#facc15", "#ef4444"]
+    }]
+  }
+});
+</script>
+
+</body>
+</html>

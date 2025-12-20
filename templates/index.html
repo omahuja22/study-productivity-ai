@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Study Productivity Analyzer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center px-4">
+
+  <div class="w-full max-w-lg bg-white/80 backdrop-blur rounded-2xl shadow-xl p-8">
+
+    <!-- Header -->
+    <div class="text-center mb-6">
+      <h1 class="text-3xl font-bold text-slate-800">📘 Study Productivity AI</h1>
+      <p class="text-sm text-slate-500 mt-1">
+        Track • Analyze • Improve your study performance
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form method="POST" onsubmit="startLoading()" class="space-y-4">
+
+      <div>
+        <label class="text-sm font-medium text-slate-600">Study Duration (minutes)</label>
+        <input type="number" name="study_minutes" required
+          class="mt-1 w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+      </div>
+
+      <div>
+        <label class="text-sm font-medium text-slate-600">Break Time (minutes)</label>
+        <input type="number" name="break_minutes" required
+          class="mt-1 w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm font-medium text-slate-600">Focus Level (1–5)</label>
+          <input type="number" min="1" max="5" name="focus_level" required
+            class="mt-1 w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+
+        <div>
+          <label class="text-sm font-medium text-slate-600">Distractions</label>
+          <input type="number" name="distractions" required
+            class="mt-1 w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+      </div>
+
+      <div>
+        <label class="text-sm font-medium text-slate-600">Hour of Study (0–23)</label>
+        <input type="number" min="0" max="23" name="hour_of_day" required
+          class="mt-1 w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+      </div>
+
+      <!-- Button -->
+      <button id="submitBtn"
+        class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
+        Analyze Productivity
+      </button>
+
+      <p id="loadingText" class="hidden text-center text-sm text-slate-500">
+        ⏳ Analyzing your study pattern…
+      </p>
+
+    </form>
+
+    <p class="text-xs text-center text-slate-400 mt-6">
+      Your data is private & used only for analytics
+    </p>
+  </div>
+
+<script>
+function startLoading() {
+  document.getElementById("submitBtn").disabled = true;
+  document.getElementById("submitBtn").innerText = "Analyzing...";
+  document.getElementById("loadingText").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
