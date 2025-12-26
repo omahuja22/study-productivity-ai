@@ -4,7 +4,7 @@ An AI-powered web application that analyzes students’ study habits and predict
 
 ---
 
-## 🚀 Problem Statements
+## 🚀 Problem Statement
 
 Many students study for long hours but still struggle with low productivity due to poor focus, ineffective break patterns, distractions, and inconsistent study timings. There is no simple tool that helps students measure, understand, and improve their study productivity using data-driven insights.
 
