@@ -87,7 +87,7 @@ Interactive Dashboard (Charts & Insights)
 ### Data Storage
 - CSV (can be upgraded to a database)
 
--
+
 
 ## 📁 Project Structure
 
