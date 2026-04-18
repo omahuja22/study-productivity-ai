@@ -17,6 +17,7 @@ The **AI Study Productivity Analyzer** collects study behavior inputs (study tim
 The system visualizes productivity trends, identifies the most productive study hours, and provides weekly insights through a clean, modern dashboard.
 
 ---
+
 ## ✨ Key Features
 
 - 📊 Productivity prediction using Machine Learning  
